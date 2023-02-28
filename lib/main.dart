@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:rythem_music/view/home_screen.dart';
 import 'package:rythem_music/view/playlist_screen.dart';
 import 'package:rythem_music/view/song_screen.dart';
+import 'package:rythem_music/view/view1.dart';
+import 'package:rythem_music/view/view2.dart';
 
 void main() {
   runApp(const MyApp());
@@ -24,6 +26,7 @@ class MyApp extends StatelessWidget {
           displayColor: Colors.white,
         ),
       ),
+      home: const CategoryPage(),
       getPages: [
         GetPage(name: "/", page: ()=>const HomeScreen()),
         GetPage(name: "/song", page: ()=>const SongScreen()),

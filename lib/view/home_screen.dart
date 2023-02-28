@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rythem_music/models/playlist.dart';
 import 'package:rythem_music/models/song.dart';
 import 'package:rythem_music/widgets/app_background.dart';
 
+import '../widgets/playlist_card.dart';
 import '../widgets/section_header.dart';
 import '../widgets/song_card.dart';
 
@@ -17,6 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     List<Song> songs = Song.songs;
+    List<Playlist> playlists = Playlist.playlists;
     return AppBackground(
       child: Scaffold(
         appBar: const CustomAppBar(),
@@ -26,19 +29,19 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Column(
               children: [
                 const _DiscoverMusic(),
+                TrendingMusic(songs: songs),
                 Column(
                   children: [
-                    const SectionHeader(title: 'Trending Music'),
-                    const SizedBox(height: 20),
-                    SizedBox(
-                      height: Get.height * 0.27,
-                      child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: songs.length,
-                          itemBuilder: (context, index) {
-                            return SongCard(song: songs[index]);
-                          }),
-                    )
+                    const SectionHeader(title: "PlayList"),
+                    ListView.builder(
+                      shrinkWrap: true,
+                      padding: const EdgeInsets.only(top: 15),
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: playlists.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return PlaylistCard(playlists: playlists[index]);
+                      },
+                    ),
                   ],
                 )
               ],
@@ -47,6 +50,34 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         bottomNavigationBar: const CustomNavBar(),
       ),
+    );
+  }
+}
+
+class TrendingMusic extends StatelessWidget {
+  const TrendingMusic({
+    Key? key,
+    required this.songs,
+  }) : super(key: key);
+
+  final List<Song> songs;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        const SectionHeader(title: 'Trending Music'),
+        const SizedBox(height: 20),
+        SizedBox(
+          height: Get.height * 0.27,
+          child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: songs.length,
+              itemBuilder: (context, index) {
+                return SongCard(song: songs[index]);
+              }),
+        )
+      ],
     );
   }
 }

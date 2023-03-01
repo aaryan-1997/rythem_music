@@ -42,26 +42,34 @@ class SongCard extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          song.title,
-                          style:
-                              Theme.of(context).textTheme.bodyLarge!.copyWith(
-                                    color: Colors.deepPurple,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                        ),
-                        Text(
-                          song.description,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodySmall!
-                              .copyWith(color: Colors.white),
-                        ),
-                      ],
+                    Flexible(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Flexible(
+                            child: Text(
+                              song.title,
+                              maxLines: 1,
+                              style:
+                                  Theme.of(context).textTheme.bodyLarge!.copyWith(
+                                        color: Colors.deepPurple,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                            ),
+                          ),
+                          Flexible(
+                            child: Text(
+                              song.description,
+                              maxLines: 1,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodySmall!
+                                  .copyWith(color: Colors.deepPurple.shade300),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                     const Icon(
                       Icons.play_circle,

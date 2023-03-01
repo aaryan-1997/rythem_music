@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:rythem_music/models/song.dart';
 import 'package:rythem_music/widgets/seek_bar.dart';
@@ -15,7 +16,7 @@ class SongScreen extends StatefulWidget {
 
 class _SongScreenState extends State<SongScreen> {
   AudioPlayer audioPlayer = AudioPlayer();
-  Song song = Song.songs[2];
+  Song song = Get.arguments ?? Song.songs[0];
   @override
   void initState() {
     audioPlayer.setAudioSource(
@@ -120,7 +121,29 @@ class MusicPlayer extends StatelessWidget {
               );
             },
           ),
-          PlayerButtons(audioPlayer: audioPlayer)
+          PlayerButtons(audioPlayer: audioPlayer),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              IconButton(
+                onPressed: () {},
+                iconSize: 35.0,
+                icon: const Icon(
+                  Icons.settings,
+                  color: Colors.white,
+                ),
+              ),
+              IconButton(
+                onPressed: () {},
+                iconSize: 35.0,
+                icon: const Icon(
+                  Icons.cloud_download,
+                  color: Colors.white,
+                ),
+              ),
+            ],
+          ),
         ],
       ),
     );

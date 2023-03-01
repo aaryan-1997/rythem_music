@@ -30,26 +30,40 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 const _DiscoverMusic(),
                 TrendingMusic(songs: songs),
-                Column(
-                  children: [
-                    const SectionHeader(title: "PlayList"),
-                    ListView.builder(
-                      shrinkWrap: true,
-                      padding: const EdgeInsets.only(top: 15),
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemCount: playlists.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return PlaylistCard(playlists: playlists[index]);
-                      },
-                    ),
-                  ],
-                )
+                PlaylistMusic(playlists: playlists),
               ],
             ),
           ),
         ),
         bottomNavigationBar: const CustomNavBar(),
       ),
+    );
+  }
+}
+
+class PlaylistMusic extends StatelessWidget {
+  const PlaylistMusic({
+    Key? key,
+    required this.playlists,
+  }) : super(key: key);
+
+  final List<Playlist> playlists;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        const SectionHeader(title: "PlayList"),
+        ListView.builder(
+          shrinkWrap: true,
+          padding: const EdgeInsets.only(top: 15),
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: playlists.length,
+          itemBuilder: (BuildContext context, int index) {
+            return PlaylistCard(playlists: playlists[index]);
+          },
+        ),
+      ],
     );
   }
 }
@@ -71,11 +85,12 @@ class TrendingMusic extends StatelessWidget {
         SizedBox(
           height: Get.height * 0.27,
           child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: songs.length,
-              itemBuilder: (context, index) {
-                return SongCard(song: songs[index]);
-              }),
+            scrollDirection: Axis.horizontal,
+            itemCount: songs.length,
+            itemBuilder: (context, index) {
+              return SongCard(song: songs[index]);
+            },
+          ),
         )
       ],
     );

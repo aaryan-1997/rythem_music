@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../models/playlist.dart';
-import '../models/song.dart';
+import '../route/app_pages.dart';
 import '../widgets/app_background.dart';
 
 class PlaylistScreen extends StatefulWidget {
@@ -56,6 +57,7 @@ class PlaylistSongs extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) {
         return ListTile(
+          onTap: () => Get.toNamed(AppRoutes.songPage,arguments: playlist.songs[index]),
           leading: Text(
             "${index + 1}",
             style: Theme.of(context).textTheme.bodyMedium!.copyWith(

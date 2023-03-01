@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rythem_music/route/app_pages.dart';
 
 import '../models/song.dart';
 
@@ -12,7 +13,7 @@ class SongCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.toNamed('/song', arguments: song);
+        Get.toNamed(AppRoutes.songPage, arguments: song);
       },
       child: Container(
         margin: const EdgeInsets.only(right: 10),

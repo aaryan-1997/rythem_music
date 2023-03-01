@@ -189,11 +189,11 @@ class Greet extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
+      children: const[
         Text(
           'Hi, Jared! {state.mood}',
         ),
-        const NotificationIcon()
+         NotificationIcon()
       ],
     );
   }
